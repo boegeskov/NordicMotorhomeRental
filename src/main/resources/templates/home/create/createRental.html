@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret udlejning</title>
+    <link rel="stylesheet" type="text/css" href="/NMP.css">
+</head>
+<body>
+    <h1 style="margin-left: 40%; margin-top: 3%;">Opret en udlejning</h1>
+    <div class="wrapper" id="wrapper-rental">
+        <div class="content" id="content-create">
+            <form action="/createRental" method="post">
+                <label>Vælg bil:</label>
+                <select style="float: right; width: 162px;" name="documentation_id" id="documentation_id">
+                    <option label="Select .." value="NONE"></option>
+                    <tr th:each="cars: ${cars}">
+                    <option th:value="${cars.documentation_id}">
+                        <td th:text="${documentation_id}"/>
+                        <td th:text="${cars.brand} + ' ' + ${cars.model}"/>
+                    </option>
+
+                </select>
+                <br><hr class="line">
+                <label>Vælg kunde:</label>
+                <select style="float: right; width: 162px;" name="customer_id" id="customer_id">
+                    <option label="Select .." value="NONE"></option>
+                    <tr th:each="customer: ${customers}">
+                    <option th:value="${customer.customer_id}">
+                        <td th:text="${customer_id}">
+                        <td th:text="${customer.cus_first_name} + ' ' + ${customer.cus_last_name}">
+                    </option>
+                </select>
+                <br><hr class="line">
+
+                <label>Antal dage:</label>
+                <input style="float: right" type="number" name="days_of_rental" placeholder="00" pattern="((?=.*\d).{1,}}" title="Indtast min. 1 tal">
+                <br><hr class="line">
+                <label>Fuld pris:</label>
+                <input style="float: right" type="number" name="total_price" placeholder="10000" pattern="((?=.*\d).{4,}}" title="Indtast min. 4 tal">
+                <br><hr class="line">
+
+                <label>Dato fra:</label>
+                <input style="float: right" type="text" name="from_date" placeholder="yyyy-mm-dd" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" title="Indtast somg følgende yyyy-mm-dd">
+                <br><hr class="line">
+                <label>Dato til:</label>
+                <input style="float: right" type="text" name="to_date" placeholder="yyyy-mm-dd" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" title="Indtast somg følgende yyyy-mm-dd">
+                <br><hr class="line">
+
+                <label>Vil du leje et picnic bord?</label>
+                <div style="float: right">
+                <input type="radio" name="rent_table"  id="yes" value="1">
+                <label>Ja tak</label>
+                <input type="radio" name="rent_table" id="no"  value="0">
+                <label for="no">Nej tak</label>
+                </div>
+                <br><hr class="line">
+
+                <label>Vil du leje stole(antal samme som antal senge)</label>
+                <div style="float: right">
+                <input type="radio" name="rent_chairs" id="yes" value="1">
+                <label>Ja tak</label>
+                <input type="radio" name="rent_chairs" id="no"  value="0">
+                <label for="no">Nej tak</label>
+                </div>
+                <br><hr class="line">
+
+                <label>Vil du leje et børnesæde?</label>
+                <div style="float: right">
+                <input type="radio" name="rent_car_seat"  id="yes" value="1">
+                <label>Ja tak</label>
+                <input type="radio" name="rent_car_seat"  id="no"  value="0">
+                <label for="no">Nej tak</label>
+                </div>
+                <br><hr class="line">
+
+                <label>Vil du leje en cykelanhaenger?</label>
+                <div style="float: right">
+                <input type="radio" name="rent_bike_rack"  id="yes" value="1">
+                <label>Ja tak</label>
+                <input type="radio" name="rent_bike_rack" id="no"  value="0">
+                <label for="no">Nej tak</label>
+                </div>
+                <br><hr class="line">
+
+                <label>Vil du leje sengetoej?</label>
+                <div style="float: right">
+                <input type="radio" name="rent_bed_linnen"  id="yes" value="1">
+                <label>Ja tak</label>
+                <input type="radio" name="rent_bed_linnen"  id="no"  value="0">
+                <label for="no">Nej tak</label>
+                </div>
+                <br><hr class="line">
+                <input style="background-color: cyan; float: right;" type="submit" value="Opret ny udlejning">
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
